@@ -22,6 +22,14 @@ def index():
 	object_list = get_csv()					# 'object list' = list of things you're gonna do stuff with 				
 	return render_template(template, object_list=object_list) # keyword arg object_list can be anything; it just corresponds to what it will be called in the template
 
+# Create an individual 'details' page for each person, tagged by row ID 
+@app.route('/<row_id>/')					
+def detail(row_id):
+    template = 'detail.html'
+    object_list = get_csv()
+    for row in object_list:
+        if row['id'] == row_id:				# "Are you my row? Are you my row?"
+            return render_template(template, object=row)
 
 if __name__ == "__main__": 					# If this script is run from the command line...
 	app.run(debug=True, use_reloader=True) 	# ...fire up the FLask test server
