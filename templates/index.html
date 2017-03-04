@@ -3,5 +3,28 @@
     <head></head>
     <body>
         <h1>Deaths during the L.A. riots</h1>
+        <table border=1 cellpadding=7>
+            <tr> 
+                <th>Name</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Race</th>
+            </tr>
+            {% for obj in object_list %}	 	<!–– This is Jinja (from Flask) ––>
+            									<!–– for each object in the list ––>
+            <tr>
+                <td>{{ obj.full_name }}</td>	<!–– get the object's name, etc. from dict ––>
+                <td>{{ obj.date }}</td>
+                <td>{{ obj.type }}</td>
+                <td>{{ obj.address }}</td>
+                <td>{{ obj.age }}</td>
+                <td>{{ obj.gender|upper }}</td>	<!––the filter "|" formats the text––>
+                <td>{{ obj.race }}</td>
+            </tr>
+            {% endfor %}						<!–– end for loop ––>
+        </table>
     </body>
 </html>
